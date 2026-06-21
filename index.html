@@ -5,39 +5,72 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <link rel="shortcut icon" href="https://raw.githubusercontent.com/RandomMonkey99/startpage/refs/heads/main/assets/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="https://www.nerdfonts.com/assets/css/webfont.css">
     <title>New Tab</title>
 </head>
 
 <body>
-    <div id="clock">
-    </div>
-    <script>
-        setInterval(showTime, 1000);
-        function showTime() {
-            let time = new Date();
-            let hour = time.getHours();
-            let min = time.getMinutes();
-            let sec = time.getSeconds();
-            am_pm = "AM";
-            hour =
-                hour < 10 ? "0" + hour : hour;
-            min = min < 10 ? "0" + min : min;
-            sec = sec < 10 ? "0" + sec : sec;
+    <<div id="clock-container">
+        <div id="clock"></div>
 
-            let currentTime =
-                hour +
-                "<span style=\"color: #8aadf4;\">:</span>" +
-                min
+        <div id="links">
+            <a href="https://github.com/" title="GitHub">
+                <i class="nf nf-fa-github"></i>
+            </a>
+            <a href="https://reddit.com/" title="Reddit">
+                <i class="nf nf-fa-reddit"></i>
+            </a>
+            <a href="https://discord.com/app" title="Discord">
+                <i class="nf nf-fa-discord"></i>
+            </a>
+        </div>
+        </div>
+        <div id="search-container">
+            <form action="https://www.duckduckgo.com/search" method="get">
+                <input id="search" type="text" name="q" placeholder="Search" autocomplete="off">
+            </form>
+        </div>
 
-            // Displaying the time
-            document.getElementById(
-                "clock"
-            ).innerHTML = currentTime;
-        }
+        <script>
+            setInterval(showTime, 1000);
 
-        showTime();
+            function showTime() {
+                let time = new Date();
+                let hour = String(time.getHours()).padStart(2, "0");
+                let min = String(time.getMinutes()).padStart(2, "0");
 
-    </script>
+                document.getElementById("clock").innerHTML =
+                    hour +
+                    '<span style="color:#8aadf4;">:</span>' +
+                    min;
+            }
+
+            showTime();
+
+            const searchContainer = document.getElementById("search-container");
+            const searchInput = document.getElementById("search");
+
+            document.addEventListener("keydown", (e) => {
+                if (
+                    searchContainer.style.display !== "block" &&
+                    e.key.length === 1 &&
+                    !e.ctrlKey &&
+                    !e.altKey &&
+                    !e.metaKey
+                ) {
+                    searchContainer.style.display = "block";
+                    searchInput.focus();
+                    searchInput.value = e.key;
+                    e.preventDefault();
+                }
+            });
+
+            searchInput.addEventListener("blur", () => {
+                if (searchInput.value === "") {
+                    searchContainer.style.display = "none";
+                }
+            });
+        </script>
 </body>
 
 </html>
