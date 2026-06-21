@@ -1,0 +1,13 @@
+#clock {
+  position: fixed;      /* or absolute */
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 7rem;      /* make it big */
+  text-align: center;
+  font-family: monospace;
+  color: #cad3f5;
+}
+body {
+    background-color: #1e2030;
+}

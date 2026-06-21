@@ -1,0 +1,42 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>New Tab</title>
+</head>
+
+<body>
+    <div id="clock">
+    </div>
+    <script>
+        setInterval(showTime, 1000);
+        function showTime() {
+            let time = new Date();
+            let hour = time.getHours();
+            let min = time.getMinutes();
+            let sec = time.getSeconds();
+            am_pm = "AM";
+            hour =
+                hour < 10 ? "0" + hour : hour;
+            min = min < 10 ? "0" + min : min;
+            sec = sec < 10 ? "0" + sec : sec;
+
+            let currentTime =
+                hour +
+                "<span style=\"color: #8aadf4;\">:</span>" +
+                min
+
+            // Displaying the time
+            document.getElementById(
+                "clock"
+            ).innerHTML = currentTime;
+        }
+
+        showTime();
+
+    </script>
+</body>
+
+</html>
